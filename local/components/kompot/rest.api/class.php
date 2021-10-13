@@ -14,7 +14,10 @@ class CRestHelper extends CBitrixComponent
     const IBLOCK_VACANCY_REQUEST_ID = 4;
     /** @var int ID инфоблока геопозиций */
     const IBLOCK_LOCATION_ID = 5;
-
+    /** @var int ID highload блока по постам инстаграма */
+    const HIGHLOAD_INSTAGRAM_ID = 1;
+    /** @var string токен инстаграма */
+    const INSTAGRAM_TOKEN = '123|456';
 
     /**
      * Поиск метода по параметрам $entity и $method
@@ -276,5 +279,36 @@ class CRestHelper extends CBitrixComponent
             ];
         }
         $this->successAnswer($arResult);
+    }
+
+    /**
+     * Список постов из instagram
+     */
+    public function getInstagramList ()
+    {
+        $arResult = [];
+        if (Loader::IncludeModule('highloadblock')) {
+            $hlblock = \Bitrix\Highloadblock\HighloadBlockTable::getById(self::HIGHLOAD_INSTAGRAM_ID)->fetch();
+            $entity = \Bitrix\Highloadblock\HighloadBlockTable::compileEntity($hlblock);
+            $entityDataClass = $entity->getDataClass();
+            $rsPosts = $entityDataClass::getList([
+                "filter" => [
+                    "UF_ACTIVE" => 1,
+                ],
+                "select" => [
+                    "ID", "UF_URL"
+                ]
+            ]);
+            while ($arPost = $rsPosts->Fetch()) {
+                $arResult[] = [
+                    "url" => $arPost["UF_URL"],
+                    "token" => self::INSTAGRAM_TOKEN,
+                    "id" => $arPost['ID']
+                ];
+            }
+            $this->successAnswer($arResult);
+        } else {
+            $this->errorAnswer("Server error: highloadblock not installed");
+        }
     }
 }
