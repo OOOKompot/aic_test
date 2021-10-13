@@ -14,7 +14,7 @@ const MEDIA_DIR = SITE_TEMPLATE_PATH . '/front';
     <?$obAsset->addString('<link rel="manifest" href="' . MEDIA_DIR . '/manifest.json"/>')?>
     <title><?$APPLICATION->ShowTitle();?></title>
     <?$obAsset->addCss(MEDIA_DIR . '/static/css/2.935bc9c2.chunk.css')?>
-    <?$obAsset->addCss(MEDIA_DIR . '/static/css/main.6fcced4d.chunk.css')?>
+    <?$obAsset->addCss(MEDIA_DIR . '/static/css/main.419829fc.chunk.css')?>
     <?$APPLICATION->ShowHead();?>
 </head>
 <body>

@@ -64,8 +64,8 @@ $obAsset = Asset::getInstance();
         t()
     }([])</script>
 <?php
-$obAsset->addJs(MEDIA_DIR . '/static/js/2.dfa67c2a.chunk.js');
-$obAsset->addJs(MEDIA_DIR . '/static/js/main.a191b36a.chunk.js');
+$obAsset->addJs(MEDIA_DIR . '/static/js/2.15e3690f.chunk.js');
+$obAsset->addJs(MEDIA_DIR . '/static/js/main.cf9d6ad8.chunk.js');
 ?>
 </body>
 </html>
